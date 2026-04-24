@@ -1,0 +1,22 @@
+# Render.com Blueprint — free web service + optional DB
+services:
+  - type: web
+    name: qim-ai2-1-backend
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: cd backend && npm ci
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: STRIPE_KEY
+        sync: false
+      - key: ELEVENLABS_KEY
+        sync: false
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://your-frontend-url.vercel.app
