@@ -1,0 +1,10 @@
+# Ignore third-party dependencies
+**/node_modules/**
+
+# Ignore build outputs
+**/.next/**
+**/out/**
+**/build/**
+
+# Ignore storage uploads
+**/storage/**

@@ -4,6 +4,7 @@ import cors from "cors";
 import chatRoute from "./routes/chat.js";
 import adminRoute from "./routes/admin.js";
 import billingRoute from "./routes/billing.js";
+import researchRoute from "./routes/research.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -33,6 +34,7 @@ app.get("/health", (_req, res) => {
 app.use("/api/chat", chatRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api/billing", billingRoute);
+app.use("/api/research", researchRoute);
 
 // Global error handler
 app.use((err, _req, res, _next) => {

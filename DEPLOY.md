@@ -7,7 +7,7 @@ Deploy your AI tutor for **free** using these providers.
 ## 🎯 Quick Deploy Summary
 
 | Service | Provider | Cost | What It Hosts |
-|---------|----------|------|---------------|
+| --- | --- | --- | --- |
 | **Frontend** | Vercel | Free | Next.js app |
 | **Backend** | Render or Railway | Free | Express API |
 | **Database** | Supabase | Free Tier | PostgreSQL + Auth |
@@ -19,6 +19,7 @@ Deploy your AI tutor for **free** using these providers.
 ## 1️⃣ Deploy Backend (Render — Free)
 
 ### Option A: Blueprint Deploy (Easiest)
+
 1. Push code to **GitHub**
 2. Go to [dashboard.render.com/blueprints](https://dashboard.render.com/blueprints)
 3. Connect your repo
@@ -30,6 +31,7 @@ Deploy your AI tutor for **free** using these providers.
    - `FRONTEND_URL` (your Vercel URL, e.g. `https://qim-ai21.vercel.app`)
 
 ### Option B: Manual
+
 1. Create a **New Web Service**
 2. Connect your GitHub repo
 3. Set:
@@ -50,9 +52,11 @@ Deploy your AI tutor for **free** using these providers.
 3. Import your repo
 4. Vercel auto-detects Next.js
 5. Add **Environment Variables**:
-   ```
+
+   ```bash
    BACKEND_URL=https://your-backend.onrender.com
    ```
+
 6. Deploy!
 
 > Vercel free tier includes automatic HTTPS, global CDN, and 100GB bandwidth.
@@ -79,10 +83,12 @@ If Render's sleep behavior is annoying, try Railway:
 2. Create new project
 3. Get connection string from Settings → Database
 4. Add to backend env vars:
-   ```
+
+   ```bash
    SUPABASE_URL=https://your-project.supabase.co
    SUPABASE_KEY=your-service-role-key
    ```
+
 5. Create tables:
    - `users` (id, email, created_at)
    - `subscriptions` (id, user_id, status, stripe_customer_id)
@@ -94,7 +100,7 @@ If Render's sleep behavior is annoying, try Railway:
 ## 5️⃣ Environment Variables Checklist
 
 | Variable | Frontend (Vercel) | Backend (Render/Railway) |
-|----------|-------------------|--------------------------|
+| --- | --- | --- |
 | `OPENAI_API_KEY` | ❌ | ✅ Required |
 | `STRIPE_KEY` | ❌ | ✅ Optional |
 | `ELEVENLABS_KEY` | ❌ | ✅ Optional |
@@ -140,7 +146,7 @@ docker run -p 4000:4000 --env-file ../.env qim-backend
 ## 📁 Files for Deploy
 
 | File | Purpose |
-|------|---------|
+| --- | --- |
 | `render.yaml` | Render Blueprint config |
 | `vercel.json` | Vercel deploy config |
 | `Dockerfile` | Frontend container |
