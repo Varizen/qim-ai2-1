@@ -8,6 +8,15 @@ import adminRoute from "./routes/admin.js";
 import billingRoute from "./routes/billing.js";
 import researchRoute from "./routes/research.js";
 
+// Simple auth middleware (replace with Clerk verifyToken in production)
+export const verifyAuth = (req, res, next) => {
+  const token = req.headers.authorization?.replace("Bearer ", "");
+  // Allow admin token or any non-empty token for now (Clerk integration placeholder)
+  if (!token) return res.status(401).json({ error: "Unauthorized" });
+  req.user = { id: token.slice(0, 12), token };
+  next();
+};
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -98,6 +107,22 @@ app.use((_req, res) => {
 app.use((err, _req, res, _next) => {
   console.error("Unhandled error:", err.message);
   res.status(500).json({ error: "Internal server error" });
+});
+
+// Memory store for simple AI memory (in-memory, replace with Redis/DB in production)
+const memoryStore = new Map();
+app.post("/api/memory/save", express.json(), (req, res) => {
+  const { userId, data } = req.body;
+  if (!userId || !data) return res.status(400).json({ error: "userId and data required" });
+  const existing = memoryStore.get(userId) || [];
+  existing.push({ ...data, timestamp: new Date().toISOString() });
+  memoryStore.set(userId, existing.slice(-50)); // Keep last 50 memories
+  res.json({ saved: true });
+});
+app.post("/api/memory/get", express.json(), (req, res) => {
+  const { userId } = req.body;
+  if (!userId) return res.status(400).json({ error: "userId required" });
+  res.json({ memories: memoryStore.get(userId) || [] });
 });
 
 const server = app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));

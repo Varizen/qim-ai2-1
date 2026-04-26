@@ -76,4 +76,23 @@ router.delete("/delete/:id", requireAuth, async (req, res) => {
   }
 });
 
+// List all uploaded files
+router.get("/files", requireAuth, async (_req, res) => {
+  try {
+    const files = fs.readdirSync(storageDir).map((filename) => {
+      const stats = fs.statSync(path.join(storageDir, filename));
+      return {
+        id: filename,
+        filename,
+        size: stats.size,
+        createdAt: stats.birthtime,
+      };
+    });
+    res.json({ files });
+  } catch (err) {
+    console.error("List files error:", err.message);
+    res.status(500).json({ error: "Failed to list files." });
+  }
+});
+
 export default router;
