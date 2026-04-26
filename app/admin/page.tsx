@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Upload, FileText, Brain, Database, Sparkles, ArrowLeft, Loader2, CheckCircle } from "lucide-react";
+import Link from "next/link";
+import Logo from "@/components/Logo";
+import { Upload, FileText, Brain, Database, ArrowLeft, Loader2, CheckCircle } from "lucide-react";
 
 type Step = "upload" | "parse" | "chunk" | "embed" | "store";
 
@@ -55,20 +57,15 @@ export default function Admin() {
       {/* Header */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB]/10 bg-[#0B0F1A]/80 backdrop-blur-md sticky top-0 z-10">
         <div className="flex items-center gap-3">
-          <a href="/" className="text-[#E5E7EB]/50 hover:text-white transition">
+          <Link href="/" className="text-[#E5E7EB]/50 hover:text-white transition">
             <ArrowLeft className="w-5 h-5" />
-          </a>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6D5DFC] to-[#14B8A6] flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-lg tracking-tight">QiM-AI2.1</span>
-          </div>
+          </Link>
+          <Logo />
         </div>
         <div className="flex items-center gap-4">
-          <a href="/chat" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Chat</a>
-          <a href="/research" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Research</a>
-          <a href="/dashboard" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Dashboard</a>
+          <Link href="/chat" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Chat</Link>
+          <Link href="/research" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Research</Link>
+          <Link href="/dashboard" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Dashboard</Link>
         </div>
       </header>
 
@@ -196,7 +193,7 @@ export default function Admin() {
 
       {/* Footer */}
       <footer className="text-center py-8 text-xs text-[#E5E7EB]/20">
-        by hakimsarker.org · powered by Varizen Inc.
+        by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
       </footer>
     </main>
   );

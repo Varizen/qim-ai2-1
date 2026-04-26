@@ -20,11 +20,18 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+# Install wget for healthchecks
+RUN apk add --no-cache wget
+
 # Copy built app
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
 EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD wget --spider -q http://localhost:3000 || exit 1
 
 CMD ["node", "server.js"]

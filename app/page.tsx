@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, BookOpen, ArrowRight, Brain, GraduationCap, Globe } from "lucide-react";
+import Link from "next/link";
+import Logo from "@/components/Logo";
+import { BookOpen, ArrowRight, Brain, GraduationCap, Globe, Sparkles } from "lucide-react";
 
 export default function Home() {
   const [hovered, setHovered] = useState(false);
@@ -13,16 +15,11 @@ export default function Home() {
 
       {/* Navigation */}
       <nav className="relative z-10 flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6D5DFC] to-[#14B8A6] flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-bold text-lg tracking-tight">QiM-AI2.1</span>
-        </div>
+        <Logo />
         <div className="flex items-center gap-4">
-          <a href="/dashboard" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Dashboard</a>
-          <a href="/chat" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Chat</a>
-          <a href="/admin" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Admin</a>
+          <Link href="/dashboard" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Dashboard</Link>
+          <Link href="/chat" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Chat</Link>
+          <Link href="/admin" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Admin</Link>
         </div>
       </nav>
 
@@ -45,7 +42,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <a
+          <Link
             href="/chat"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
@@ -54,14 +51,14 @@ export default function Home() {
             <BookOpen className="w-5 h-5" />
             Start Learning
             <ArrowRight className={`w-4 h-4 transition-transform ${hovered ? "translate-x-1" : ""}`} />
-          </a>
-          <a
+          </Link>
+          <Link
             href="/dashboard"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#111827] border border-[#E5E7EB]/10 text-[#E5E7EB] font-semibold hover:bg-[#111827]/80 transition"
           >
             <GraduationCap className="w-5 h-5" />
             Go to Dashboard
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -94,7 +91,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative z-10 text-center py-8 text-xs text-[#E5E7EB]/30">
-        by hakimsarker.org · powered by Varizen Inc. · with love from Wyoming, Kuala Lumpur and Dhaka · in association with SohaelTasneem Foundation Ltd.
+        by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
       </footer>
     </main>
   );

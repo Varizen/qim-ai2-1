@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Logo from "@/components/Logo";
 import {
-  TrendingUp, BookOpen, User, Sparkles, ArrowLeft, Brain,
-  FileText, Search, CreditCard, Settings, Loader2
+  TrendingUp, BookOpen, User, ArrowLeft, Brain,
+  FileText, Search, CreditCard, Loader2
 } from "lucide-react";
 
 interface DashboardData {
@@ -55,20 +57,15 @@ export default function Dashboard() {
       {/* Header */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-[#E5E7EB]/10 bg-[#0B0F1A]/80 backdrop-blur-md sticky top-0 z-10">
         <div className="flex items-center gap-3">
-          <a href="/" className="text-[#E5E7EB]/50 hover:text-white transition">
+          <Link href="/" className="text-[#E5E7EB]/50 hover:text-white transition">
             <ArrowLeft className="w-5 h-5" />
-          </a>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6D5DFC] to-[#14B8A6] flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-lg tracking-tight">QiM-AI2.1</span>
-          </div>
+          </Link>
+          <Logo />
         </div>
         <div className="flex items-center gap-4">
-          <a href="/chat" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Chat</a>
-          <a href="/research" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Research</a>
-          <a href="/admin" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Admin</a>
+          <Link href="/chat" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Chat</Link>
+          <Link href="/research" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Research</Link>
+          <Link href="/admin" className="text-sm text-[#E5E7EB]/70 hover:text-white transition">Admin</Link>
         </div>
       </header>
 
@@ -146,26 +143,26 @@ export default function Dashboard() {
                   Quick Actions
                 </h2>
                 <div className="space-y-2">
-                  <a href="/chat" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
+                  <Link href="/chat" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
                     <Brain className="w-4 h-4 text-[#6D5DFC]" />
                     Start AI Tutor Chat
                     <TrendingUp className="w-3 h-3 text-[#E5E7EB]/20 ml-auto" />
-                  </a>
-                  <a href="/research" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
+                  </Link>
+                  <Link href="/research" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
                     <Search className="w-4 h-4 text-[#14B8A6]" />
                     Search Research Papers
                     <TrendingUp className="w-3 h-3 text-[#E5E7EB]/20 ml-auto" />
-                  </a>
-                  <a href="/admin" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
+                  </Link>
+                  <Link href="/admin" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
                     <FileText className="w-4 h-4 text-[#6D5DFC]" />
                     Upload Training Data
                     <TrendingUp className="w-3 h-3 text-[#E5E7EB]/20 ml-auto" />
-                  </a>
-                  <a href="/dashboard" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
+                  </Link>
+                  <Link href="/dashboard" className="flex items-center gap-3 p-3 rounded-lg bg-[#0B0F1A] hover:bg-[#1a2236] transition text-sm">
                     <CreditCard className="w-4 h-4 text-[#14B8A6]" />
                     Manage Credits
                     <TrendingUp className="w-3 h-3 text-[#E5E7EB]/20 ml-auto" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -175,7 +172,7 @@ export default function Dashboard() {
 
       {/* Footer */}
       <footer className="text-center py-8 text-xs text-[#E5E7EB]/20">
-        by hakimsarker.org · powered by Varizen Inc.
+        by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
       </footer>
     </main>
   );

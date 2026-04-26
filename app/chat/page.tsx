@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Logo from "@/components/Logo";
 import {
   Send, Bot, User, Sparkles, BookOpen, Mic, Menu, X, Loader2,
   LayoutDashboard, Search, FileText, Settings, CreditCard, FlaskConical,
-  Brain, Globe, ChevronRight
+  Brain, Globe
 } from "lucide-react";
 
 interface Message {
@@ -64,7 +65,6 @@ export default function Chat() {
   const [loading, setLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mode, setMode] = useState<ChatMode>("general");
-  const [activePanel, setActivePanel] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -116,12 +116,7 @@ export default function Chat() {
         }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-[#E5E7EB]/10">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6D5DFC] to-[#14B8A6] flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-lg tracking-tight">QiM-AI2.1</span>
-          </div>
+          <Logo href="/" />
           <button onClick={() => setSidebarOpen(false)} aria-label="Close sidebar" className="md:hidden text-[#E5E7EB]/50 hover:text-white">
             <X className="w-5 h-5" />
           </button>
@@ -201,7 +196,7 @@ export default function Chat() {
             Dashboard
           </a>
           <p className="text-xs text-[#E5E7EB]/20 text-center mt-3">
-            by hakimsarker.org · Varizen Inc.
+            by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
           </p>
         </div>
       </aside>
@@ -233,12 +228,7 @@ export default function Chat() {
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setActivePanel(activePanel === "context" ? null : "context")}
-              className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition ${
-                activePanel === "context"
-                  ? "bg-[#6D5DFC] text-white"
-                  : "bg-[#111827] text-[#E5E7EB]/60 hover:text-white"
-              }`}
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition bg-[#111827] text-[#E5E7EB]/60 hover:text-white"
             >
               <Brain className="w-3.5 h-3.5" />
               Context
@@ -353,7 +343,7 @@ export default function Chat() {
       </main>
 
       {/* Context Panel (Professional Mode) */}
-      {mode === "professional" && activePanel === "context" && (
+      {mode === "professional" && (
         <aside className="hidden lg:flex w-80 bg-[#111827] border-l border-[#E5E7EB]/10 flex-col">
           <div className="p-4 border-b border-[#E5E7EB]/10">
             <h3 className="font-semibold text-sm flex items-center gap-2">

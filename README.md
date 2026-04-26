@@ -3,7 +3,7 @@
 Learn deeply with an AI tutor inspired by great teaching.
 
 **Branding:**  
-by hakimsarker.org · powered by Varizen Inc. · with love from Wyoming, Kuala Lumpur and Dhaka · in association with SohaelTasneem Foundation Ltd.
+by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
 
 ## Structure
 

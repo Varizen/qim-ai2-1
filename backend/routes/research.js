@@ -52,16 +52,18 @@ router.get("/", async (req, res) => {
       }
     }
 
+    const currentYear = new Date().getFullYear();
     const authors = Array.from(authorMap.entries())
       .map(([name, stats]) => {
-        const maxYear = Math.max(...stats.years, new Date().getFullYear());
-        const recency = stats.years.length > 0 ? maxYear : 0;
-        const score = 0.5 * stats.totalCitations + 0.3 * stats.papers + 0.2 * recency;
+        const maxYear = stats.years.length > 0 ? Math.max(...stats.years) : currentYear;
+        // Normalize recency score: 1.0 = current year, 0.0 = 20 years ago
+        const recencyNorm = Math.max(0, Math.min(1, (maxYear - (currentYear - 20)) / 20));
+        const score = 0.5 * stats.totalCitations + 0.3 * stats.papers * 10 + 0.2 * recencyNorm * 100;
         return {
           name,
           totalCitations: stats.totalCitations,
           papers: stats.papers,
-          score,
+          score: Math.round(score * 10) / 10,
         };
       })
       .sort((a, b) => b.score - a.score)

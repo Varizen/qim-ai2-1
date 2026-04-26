@@ -167,4 +167,4 @@ docker run -p 4000:4000 --env-file ../.env qim-backend
 
 ---
 
-**Branding:** by hakimsarker.org · powered by Varizen Inc. · with love from Wyoming, Kuala Lumpur and Dhaka
+**Branding:** by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
