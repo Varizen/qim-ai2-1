@@ -195,9 +195,16 @@ export default function Chat() {
             <LayoutDashboard className="w-4 h-4" />
             Dashboard
           </a>
-          <p className="text-xs text-[#E5E7EB]/20 text-center mt-3">
-            by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
-          </p>
+          <div className="text-[10px] text-[#E5E7EB]/20 text-center mt-3 space-y-0.5 leading-tight">
+            <p>
+              <span className="text-[#E5E7EB]/35">by</span>{" "}
+              <span className="text-[#6D5DFC]/80">hakimsarker.org</span>
+              <span className="mx-0.5">·</span>
+              <span className="text-[#14B8A6]/80">Varizen Inc.</span>
+            </p>
+            <p className="text-[#E5E7EB]/15">with love from Dhaka, Kuala Lumpur and Wyoming</p>
+            <p className="text-[#E5E7EB]/15">SohaelTasneem Foundation Ltd · ISWR, University of Dhaka</p>
+          </div>
         </div>
       </aside>
 

@@ -230,8 +230,15 @@ export default function Research() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center py-8 text-xs text-[#E5E7EB]/20">
-        by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
+      <footer className="text-center py-8 text-xs text-[#E5E7EB]/20 space-y-1">
+        <p>
+          <span className="text-[#E5E7EB]/40">by</span>{" "}
+          <span className="text-[#6D5DFC]">hakimsarker.org</span>
+          <span className="mx-1">·</span>
+          <span className="text-[#14B8A6]">Varizen Inc.</span>
+        </p>
+        <p className="text-[#E5E7EB]/15">with love from Dhaka, Kuala Lumpur and Wyoming</p>
+        <p className="text-[#E5E7EB]/15">SohaelTasneem Foundation Ltd · a non-profit organization · ISWR, University of Dhaka</p>
       </footer>
     </main>
   );

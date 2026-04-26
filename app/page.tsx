@@ -90,8 +90,27 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 text-center py-8 text-xs text-[#E5E7EB]/30">
-        by hakimsarker.org · powered by Varizen Inc. · developped with love from Dhaka, Kuala Lumpur and Wyoming· in association with SohaelTasneem Foundation Ltd - a non-profit organization and ISWR, University of Dhaka.
+      <footer className="relative z-10 text-center py-8 text-xs text-[#E5E7EB]/30 space-y-1">
+        <p>
+          <span className="text-[#E5E7EB]/50">by</span>{" "}
+          <a href="https://hakimsarker.org" target="_blank" rel="noopener noreferrer" className="text-[#6D5DFC] hover:underline">hakimsarker.org</a>
+          <span className="mx-1">·</span>
+          <span className="text-[#E5E7EB]/50">powered by</span>{" "}
+          <span className="text-[#14B8A6]">Varizen Inc.</span>
+        </p>
+        <p>
+          <span className="text-[#E5E7EB]/40">developped with love from Dhaka, Kuala Lumpur and Wyoming</span>
+        </p>
+        <p>
+          <span className="text-[#E5E7EB]/30">in association with</span>{" "}
+          <span className="text-[#E5E7EB]/40">SohaelTasneem Foundation Ltd</span>
+          <span className="mx-1 text-[#E5E7EB]/20">·</span>
+          <span className="text-[#E5E7EB]/30">a non-profit organization</span>
+        </p>
+        <p>
+          <span className="text-[#E5E7EB]/30">and</span>{" "}
+          <span className="text-[#E5E7EB]/40">ISWR, University of Dhaka</span>
+        </p>
       </footer>
     </main>
   );
