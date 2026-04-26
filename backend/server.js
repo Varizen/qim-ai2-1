@@ -98,17 +98,6 @@ app.use("/api/admin", adminRoute);
 app.use("/api/billing", billingRoute);
 app.use("/api/research", researchRoute);
 
-// 404 handler
-app.use((_req, res) => {
-  res.status(404).json({ error: "Not found" });
-});
-
-// Global error handler
-app.use((err, _req, res, _next) => {
-  console.error("Unhandled error:", err.message);
-  res.status(500).json({ error: "Internal server error" });
-});
-
 // Memory store for simple AI memory (in-memory, replace with Redis/DB in production)
 const memoryStore = new Map();
 app.post("/api/memory/save", express.json(), (req, res) => {
@@ -123,6 +112,17 @@ app.post("/api/memory/get", express.json(), (req, res) => {
   const { userId } = req.body;
   if (!userId) return res.status(400).json({ error: "userId required" });
   res.json({ memories: memoryStore.get(userId) || [] });
+});
+
+// 404 handler
+app.use((_req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
+
+// Global error handler
+app.use((err, _req, res, _next) => {
+  console.error("Unhandled error:", err.message);
+  res.status(500).json({ error: "Internal server error" });
 });
 
 const server = app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
