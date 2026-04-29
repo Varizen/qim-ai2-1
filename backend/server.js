@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
+import { allowedOrigins, envStatus } from "./config.js";
 import chatRoute from "./routes/chat.js";
 import adminRoute from "./routes/admin.js";
 import billingRoute from "./routes/billing.js";
@@ -30,13 +31,8 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
 }));
 
-// CORS — allow frontend origin in production
-const allowedOrigins = process.env.FRONTEND_URL
-  ? [process.env.FRONTEND_URL, "http://localhost:3000"]
-  : ["http://localhost:3000"];
-
 app.use(cors({
-  origin: allowedOrigins,
+  origin: allowedOrigins(),
   credentials: true,
 }));
 
@@ -77,14 +73,7 @@ app.get("/health", async (_req, res) => {
     env: process.env.NODE_ENV || "development",
   };
 
-  // Check critical env vars (without exposing values)
-  const requiredEnv = ["OPENAI_API_KEY"];
-  const optionalEnv = ["STRIPE_SECRET_KEY", "ADMIN_TOKEN"];
-  checks.envStatus = {
-    required: requiredEnv.map((k) => ({ key: k, present: !!process.env[k] })),
-    optional: optionalEnv.map((k) => ({ key: k, present: !!process.env[k] })),
-    healthy: requiredEnv.every((k) => !!process.env[k]),
-  };
+  checks.envStatus = envStatus();
 
   const statusCode = checks.envStatus.healthy ? 200 : 503;
   res.status(statusCode).json({

@@ -26,9 +26,10 @@ Deploy your AI tutor for **free** using these providers.
 4. Render reads `render.yaml` automatically
 5. Add your environment variables in the dashboard:
    - `OPENAI_API_KEY`
-   - `STRIPE_KEY`
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_PRICE_ID`
    - `ELEVENLABS_KEY`
-   - `FRONTEND_URL` (your Vercel URL, e.g. `https://qim-ai21.vercel.app`)
+   - `FRONTEND_URL` (`https://qim-ai2-1.hakimsarker.org`)
 
 ### Option B: Manual
 
@@ -54,10 +55,24 @@ Deploy your AI tutor for **free** using these providers.
 5. Add **Environment Variables**:
 
    ```bash
-   BACKEND_URL=https://your-backend.onrender.com
+   BACKEND_URL=https://qim-ai2-1-backend.onrender.com
    ```
 
-6. Deploy!
+6. Add your custom domain in Vercel: `qim-ai2-1.hakimsarker.org`
+7. Deploy!
+
+If you host the frontend on Render instead of Vercel, `BACKEND_URL` can be wired from the backend service:
+
+```yaml
+envVars:
+  - key: BACKEND_URL
+    fromService:
+      type: web
+      name: qim-ai2-1-backend
+      property: url
+```
+
+For Vercel, add `BACKEND_URL` in the Vercel dashboard manually after the backend URL exists.
 
 > Vercel free tier includes automatic HTTPS, global CDN, and 100GB bandwidth.
 
@@ -102,12 +117,15 @@ If Render's sleep behavior is annoying, try Railway:
 | Variable | Frontend (Vercel) | Backend (Render/Railway) |
 | --- | --- | --- |
 | `OPENAI_API_KEY` | ❌ | ✅ Required |
-| `STRIPE_KEY` | ❌ | ✅ Optional |
+| `STRIPE_SECRET_KEY` | ❌ | ✅ Optional |
+| `STRIPE_PRICE_ID` | ❌ | ✅ Optional |
 | `ELEVENLABS_KEY` | ❌ | ✅ Optional |
 | `ADMIN_TOKEN` | ❌ | ✅ Required |
 | `FRONTEND_URL` | ❌ | ✅ Required (CORS) |
 | `BACKEND_URL` | ✅ Required | ❌ |
 | `NODE_ENV` | ❌ | ✅ Set to `production` |
+
+Legacy aliases are also accepted by the backend for compatibility: `OPENAI_KEY` for `OPENAI_API_KEY`, and `STRIPE_KEY` for `STRIPE_SECRET_KEY`.
 
 ---
 
@@ -117,10 +135,10 @@ After deploy, verify these endpoints:
 
 ```bash
 # Health check
-curl https://your-api.onrender.com/health
+curl https://qim-ai2-1-backend.onrender.com/health
 
 # Chat API
-curl -X POST https://your-api.onrender.com/api/chat \
+curl -X POST https://qim-ai2-1-backend.onrender.com/api/chat \
   -H "Content-Type: application/json" \
   -d '{"message":"Hello"}'
 ```

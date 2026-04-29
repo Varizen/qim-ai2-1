@@ -18,12 +18,17 @@ const steps: { key: Step; label: string; icon: typeof Upload }[] = [
 export default function Admin() {
   const [file, setFile] = useState<File | null>(null);
   const [purpose, setPurpose] = useState("");
+  const [adminToken, setAdminToken] = useState("");
   const [status, setStatus] = useState("");
   const [activeStep, setActiveStep] = useState<Step>("upload");
   const [uploading, setUploading] = useState(false);
 
   const upload = async () => {
     if (!file) return;
+    if (!adminToken.trim()) {
+      setStatus("Admin token is required.");
+      return;
+    }
     setUploading(true);
     setActiveStep("upload");
     setStatus("Uploading...");
@@ -35,6 +40,7 @@ export default function Admin() {
     try {
       const res = await fetch("/api/admin/upload", {
         method: "POST",
+        headers: { Authorization: `Bearer ${adminToken.trim()}` },
         body: formData,
       });
       const data = await res.json();
@@ -137,6 +143,21 @@ export default function Admin() {
             </div>
 
             <div>
+              <label htmlFor="admin-token" className="block text-sm font-medium text-[#E5E7EB]/60 mb-1">
+                Admin Token
+              </label>
+              <input
+                id="admin-token"
+                type="password"
+                value={adminToken}
+                onChange={(e) => setAdminToken(e.target.value)}
+                placeholder="Enter ADMIN_TOKEN"
+                autoComplete="off"
+                className="block w-full bg-[#0B0F1A] border border-[#E5E7EB]/10 rounded-lg px-4 py-2 text-sm text-[#E5E7EB] placeholder-[#E5E7EB]/30 focus:outline-none focus:border-[#6D5DFC]/40 focus:ring-1 focus:ring-[#6D5DFC]/20 transition"
+              />
+            </div>
+
+            <div>
               <label htmlFor="purpose" className="block text-sm font-medium text-[#E5E7EB]/60 mb-1">
                 Purpose
               </label>
@@ -151,9 +172,9 @@ export default function Admin() {
 
             <button
               onClick={upload}
-              disabled={!file || uploading}
+              disabled={!file || !adminToken.trim() || uploading}
               className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-medium transition ${
-                file && !uploading
+                file && adminToken.trim() && !uploading
                   ? "bg-[#6D5DFC] text-white hover:bg-[#6D5DFC]/90 shadow-lg shadow-[#6D5DFC]/20"
                   : "bg-[#111827] text-[#E5E7EB]/20 cursor-not-allowed border border-[#E5E7EB]/5"
               }`}

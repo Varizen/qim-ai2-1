@@ -61,8 +61,9 @@ router.post("/upload", requireAuth, upload.single("file"), async (req, res) => {
 
 router.delete("/delete/:id", requireAuth, async (req, res) => {
   try {
-    const filePath = path.join(storageDir, req.params.id);
-    if (!filePath.startsWith(storageDir)) {
+    const filePath = path.resolve(storageDir, req.params.id);
+    const storageRoot = path.resolve(storageDir);
+    if (filePath !== storageRoot && !filePath.startsWith(`${storageRoot}${path.sep}`)) {
       return res.status(400).json({ error: "Invalid file ID" });
     }
     if (fs.existsSync(filePath)) {

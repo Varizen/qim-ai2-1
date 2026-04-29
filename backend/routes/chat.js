@@ -1,9 +1,10 @@
 import "../config.js";
 import express from "express";
 import OpenAI from "openai";
+import { getEnv } from "../config.js";
 
 const router = express.Router();
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const client = new OpenAI({ apiKey: getEnv("OPENAI_API_KEY", "OPENAI_KEY") });
 
 const MAX_MESSAGE_LENGTH = 8000;
 const VALID_MODES = new Set(["general", "professional"]);

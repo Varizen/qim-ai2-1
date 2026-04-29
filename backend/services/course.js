@@ -1,8 +1,9 @@
 import "../config.js";
 import OpenAI from "openai";
+import { getEnv } from "../config.js";
 
 export async function generateCourse(syllabusText) {
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = new OpenAI({ apiKey: getEnv("OPENAI_API_KEY", "OPENAI_KEY") });
 
   const res = await client.chat.completions.create({
     model: "gpt-4.1",

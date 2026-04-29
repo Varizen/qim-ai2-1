@@ -1,0 +1,48 @@
+name: Backend health monitor & auto-restart
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    env:
+      BACKEND_URL: ${{ secrets.BACKEND_URL }}
+      RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+      RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+      RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}
+      RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check health
+        id: health
+        run: |
+          set -euo pipefail
+          url="${BACKEND_URL%/}/health"
+          echo "Checking $url"
+          code=$(curl -s -o /dev/null -w '%{http_code}' "$url" || echo "000")
+          echo "status_code=$code" >> $GITHUB_OUTPUT
+
+      - name: Restart if unhealthy
+        if: steps.health.outputs.status_code != '200'
+        run: |
+          set -euo pipefail
+          echo "Health check failed (code=${{ steps.health.outputs.status_code }}), attempting restart..."
+          chmod +x ./scripts/restart_backend.sh
+          ./scripts/restart_backend.sh
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify healthy
+        if: steps.health.outputs.status_code == '200'
+        run: echo "Backend healthy (200)."

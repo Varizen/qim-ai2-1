@@ -1,16 +1,18 @@
 import "../config.js";
-import axios from "axios";
 
 export async function generateVoice(text) {
-  const res = await axios.post(
-    "https://api.elevenlabs.io/v1/text-to-speech/YOUR_VOICE_ID",
-    { text },
-    {
-      headers: {
-        "xi-api-key": process.env.ELEVENLABS_KEY,
-      },
-    }
-  );
+  const res = await fetch("https://api.elevenlabs.io/v1/text-to-speech/YOUR_VOICE_ID", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "xi-api-key": process.env.ELEVENLABS_KEY || "",
+    },
+    body: JSON.stringify({ text }),
+  });
 
-  return res.data;
+  if (!res.ok) {
+    throw new Error(`Voice generation failed with status ${res.status}`);
+  }
+
+  return res.arrayBuffer();
 }

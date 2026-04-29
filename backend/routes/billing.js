@@ -1,17 +1,23 @@
 import "../config.js";
 import express from "express";
 import Stripe from "stripe";
+import { frontendUrl, getEnv } from "../config.js";
 
 const router = express.Router();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
-const STRIPE_PRICE_ID = process.env.STRIPE_PRICE_ID;
+const STRIPE_PRICE_ID = getEnv("STRIPE_PRICE_ID");
+const STRIPE_SECRET_KEY = getEnv("STRIPE_SECRET_KEY", "STRIPE_KEY");
+
+const getStripe = () => {
+  if (!STRIPE_SECRET_KEY) return null;
+  return new Stripe(STRIPE_SECRET_KEY);
+};
 
 router.post("/checkout", async (req, res) => {
   try {
-    if (!STRIPE_PRICE_ID) {
-      console.error("STRIPE_PRICE_ID is not configured");
+    const stripe = getStripe();
+    if (!stripe || !STRIPE_PRICE_ID) {
+      console.error("Stripe billing is not fully configured");
       return res.status(500).json({ error: "Billing is not configured. Contact support." });
     }
 
@@ -26,8 +32,8 @@ router.post("/checkout", async (req, res) => {
         },
       ],
       mode: "subscription",
-      success_url: `${FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${FRONTEND_URL}/`,
+      success_url: `${frontendUrl()}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${frontendUrl()}/`,
       customer_email: email || undefined,
     });
 
@@ -41,6 +47,11 @@ router.post("/checkout", async (req, res) => {
 // Verify checkout session
 router.get("/session/:id", async (req, res) => {
   try {
+    const stripe = getStripe();
+    if (!stripe) {
+      return res.status(500).json({ error: "Billing is not configured. Contact support." });
+    }
+
     const session = await stripe.checkout.sessions.retrieve(req.params.id);
     res.json({ status: session.payment_status, customer: session.customer_email });
   } catch (err) {

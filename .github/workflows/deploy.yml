@@ -12,8 +12,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: cd backend && npm ci
-      - run: cd qim-ai2-1 && npm ci
+          cache: npm
+      - name: Install frontend dependencies
+        run: npm ci
+      - name: Lint frontend
+        run: npm run lint
+      - name: Build frontend
+        run: npm run build
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: backend
+      - name: Validate backend entrypoint
+        run: node --check server.js
+        working-directory: backend
 
   deploy-backend:
     needs: test
