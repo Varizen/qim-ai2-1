@@ -9,5 +9,9 @@
   "search.exclude": {
     "**/node_modules": true,
     "**/.next": true
+  },
+  "chat.tools.terminal.autoApprove": {
+    "textutil": true,
+    "cp": true
   }
 }

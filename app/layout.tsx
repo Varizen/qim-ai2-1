@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "QiM-AI2.1",
-  description: "Learn deeply with an AI tutor inspired by great teaching.",
+  title: "HakimSarker.org | QiM-AI2.1",
+  description:
+    "The digital legacy of knowledge and wisdom of Professor Abdul Hakim Sarker Ph.D. (1947-2025), powered by QiM-AI2.1.",
 };
 
 export const viewport: Viewport = {
@@ -31,13 +33,29 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html
-        lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-        suppressHydrationWarning
-      >
-        <body className="min-h-full flex flex-col">{children}</body>
-      </html>
+      <LanguageProvider>
+        <html
+          className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+          suppressHydrationWarning
+        >
+          <head>
+            <link
+              rel="preconnect"
+              href="https://fonts.googleapis.com"
+            />
+            <link
+              rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossOrigin="anonymous"
+            />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+              rel="stylesheet"
+            />
+          </head>
+          <body className="min-h-full flex flex-col">{children}</body>
+        </html>
+      </LanguageProvider>
     </ClerkProvider>
   );
 }

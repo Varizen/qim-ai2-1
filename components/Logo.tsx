@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Sparkles } from "lucide-react";
 
 interface LogoProps {
@@ -18,8 +19,15 @@ export default function Logo({ href = "/", showText = true, size = "md" }: LogoP
 
   const content = (
     <>
-      <div className={`${s.container} rounded-lg bg-gradient-to-br from-[#6D5DFC] to-[#14B8A6] flex items-center justify-center flex-shrink-0`}>
-        <Sparkles className={`${s.icon} text-white`} />
+      <div className={`${s.container} relative overflow-hidden rounded-lg bg-gradient-to-br from-[#6D5DFC] to-[#14B8A6] flex items-center justify-center flex-shrink-0`}>
+        <Image
+          src="/qim-legacy-logo.png"
+          alt="QiM-AI2.1"
+          fill
+          sizes="40px"
+          className="object-cover"
+        />
+        <Sparkles className={`${s.icon} text-white opacity-0`} />
       </div>
       {showText && (
         <span className={`font-bold ${s.text} tracking-tight`}>QiM-AI2.1</span>

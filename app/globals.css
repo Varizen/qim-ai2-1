@@ -7,12 +7,18 @@
     --surface: #111827;
     --primary: #6D5DFC;
     --accent: #14B8A6;
+    --font-bangla: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
   }
 
   body {
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  }
+
+  /* Bangla font utility */
+  .font-bangla {
+    font-family: var(--font-bangla) !important;
   }
 }
 
@@ -24,4 +30,5 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-bangla: var(--font-bangla);
 }
