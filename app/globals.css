@@ -4,14 +4,22 @@
   :root {
     /* ─── Surface ─── */
     --background: #07100f;
+    --background-legacy: #0B0F1A;
     --foreground: #edf7f5;
+    --foreground-legacy: #E5E7EB;
     --surface-elevated: #0d1f22;
     --surface-hover: #111827;
+    --surface-card: #111827;
+    --surface-dark: #0B0F1A;
     --surface-border: rgba(255,255,255,0.10);
     --surface-border-light: rgba(255,255,255,0.06);
+    --surface-border-legacy: rgba(229,231,235,0.10);
 
     /* ─── Brand ─── */
     --primary: #6D5DFC;
+    --primary-muted: rgba(109,93,252,0.20);
+    --primary-subtle: rgba(109,93,252,0.10);
+    --primary-border: rgba(109,93,252,0.30);
     --accent: #14B8A6;
     --accent-gold: #f2c766;
     --accent-gold-hover: #f7dc96;
@@ -26,9 +34,14 @@
 
     /* ─── Text ─── */
     --text-primary: #edf7f5;
+    --text-primary-legacy: #E5E7EB;
     --text-secondary: rgba(237,247,245,0.68);
+    --text-secondary-legacy: rgba(229,231,235,0.70);
     --text-muted: rgba(237,247,245,0.45);
+    --text-muted-legacy: rgba(229,231,235,0.50);
+    --text-muted-low: rgba(229,231,235,0.30);
     --text-disabled: rgba(237,247,245,0.25);
+    --text-disabled-legacy: rgba(229,231,235,0.20);
 
     /* ─── Legacy Gradients ─── */
     --legacy-start: #07100f;
@@ -54,14 +67,22 @@
 @theme inline {
   /* Surface */
   --color-background: var(--background);
+  --color-background-legacy: var(--background-legacy);
   --color-foreground: var(--foreground);
+  --color-foreground-legacy: var(--foreground-legacy);
   --color-surface: var(--surface-elevated);
   --color-surface-hover: var(--surface-hover);
+  --color-surface-card: var(--surface-card);
+  --color-surface-dark: var(--surface-dark);
   --color-border: var(--surface-border);
   --color-border-light: var(--surface-border-light);
+  --color-border-legacy: var(--surface-border-legacy);
 
   /* Brand */
   --color-primary: var(--primary);
+  --color-primary-muted: var(--primary-muted);
+  --color-primary-subtle: var(--primary-subtle);
+  --color-primary-border: var(--primary-border);
   --color-accent: var(--accent);
   --color-accent-gold: var(--accent-gold);
   --color-accent-gold-hover: var(--accent-gold-hover);
@@ -76,9 +97,14 @@
 
   /* Text */
   --color-text-primary: var(--text-primary);
+  --color-text-primary-legacy: var(--text-primary-legacy);
   --color-text-secondary: var(--text-secondary);
+  --color-text-secondary-legacy: var(--text-secondary-legacy);
   --color-text-muted: var(--text-muted);
+  --color-text-muted-legacy: var(--text-muted-legacy);
+  --color-text-muted-low: var(--text-muted-low);
   --color-text-disabled: var(--text-disabled);
+  --color-text-disabled-legacy: var(--text-disabled-legacy);
 
   /* Typography */
   --font-sans: var(--font-geist-sans);

@@ -8,7 +8,7 @@ export default async function SecureMfaPage() {
   const status = await getMfaPolicyStatus();
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_50%_0%,rgba(109,93,252,0.26),transparent_34%),linear-gradient(135deg,#07100f,#0B0F1A)] px-6 py-10 text-[#E5E7EB]">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_50%_0%,rgba(109,93,252,0.26),transparent_34%),linear-gradient(135deg,#07100f,#0d1f22)] px-6 py-10 text-foreground-legacy">
       <div className="mx-auto flex max-w-6xl items-center justify-between">
         <Logo />
         <Link href="/" className="text-sm text-white/60 transition hover:text-white">
@@ -18,7 +18,7 @@ export default async function SecureMfaPage() {
 
       <section className="mx-auto grid max-w-6xl items-start gap-10 py-16 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#f2c766]/35 bg-[#f2c766]/10 px-4 py-2 text-sm text-[#f7dc96]">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-gold-border bg-accent-gold-bg px-4 py-2 text-sm text-accent-gold-hover">
             <ShieldCheck className="h-4 w-4" />
             Mandatory account protection
           </div>

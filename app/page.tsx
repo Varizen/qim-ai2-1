@@ -54,7 +54,7 @@ export default function Home() {
             </Link>
             <Link
               href="/sign-up"
-              className="rounded-full border border-[#f2c766]/35 bg-[#f2c766]/10 px-4 py-2 text-sm font-semibold text-[#f7dc96] transition hover:bg-[#f2c766]/18"
+              className="rounded-full border border-accent-gold-border bg-accent-gold-bg px-4 py-2 text-sm font-semibold text-accent-gold-hover transition hover:bg-accent-gold/18"
             >
               {t.nav.signUp}
             </Link>
@@ -63,7 +63,7 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto grid min-h-[calc(100vh-76px)] max-w-7xl items-center gap-12 px-5 pb-20 pt-8 sm:px-6 lg:grid-cols-[1.03fr_0.97fr]">
           <div className="max-w-3xl">
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#d8b45f]/40 bg-[#d8b45f]/10 px-4 py-2 text-sm text-[#f7dc96]">
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#d8b45f]/40 bg-[#d8b45f]/10 px-4 py-2 text-sm text-accent-gold-hover">
               <Sparkles className="h-4 w-4" />
               {t.hero.badge}
             </div>
@@ -79,7 +79,7 @@ export default function Home() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/sign-up"
-                className={`inline-flex items-center justify-center gap-2 rounded-lg bg-[#f2c766] px-6 py-3 text-sm font-semibold text-[#10140f] shadow-[0_18px_55px_rgba(242,199,102,0.24)] transition hover:bg-[#ffe08a] ${fontClass}`}
+                className={`inline-flex items-center justify-center gap-2 rounded-lg bg-accent-gold px-6 py-3 text-sm font-semibold text-[#10140f] shadow-[0_18px_55px_rgba(242,199,102,0.24)] transition hover:bg-accent-gold-hover ${fontClass}`}
               >
                 <UserRound className="h-5 w-5" />
                 {t.hero.ctaPrimary}
@@ -135,7 +135,7 @@ export default function Home() {
         <div className="grid gap-4 sm:grid-cols-2">
           {t.timeline.items.map((item) => (
             <div key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-5">
-              <Landmark className="mb-4 h-5 w-5 text-[#f2c766]" />
+              <Landmark className="mb-4 h-5 w-5 text-accent-gold" />
               <p className={`text-sm leading-6 text-white/74 ${fontClass}`}>{item}</p>
             </div>
           ))}
@@ -146,7 +146,7 @@ export default function Home() {
       <section className="border-y border-white/10 bg-[#0a1918]">
         <div className="mx-auto grid max-w-7xl gap-6 px-5 py-16 sm:px-6 lg:grid-cols-3">
           {t.pillars.map(({ title, text }) => (
-            <article key={title} className="rounded-lg border border-white/10 bg-[#0f2422] p-6">
+            <article key={title} className="rounded-lg border border-white/10 bg-surface-elevated p-6">
               {title === t.pillars[0].title && <Scale className="h-7 w-7 text-[#83f0d9]" />}
               {title === t.pillars[1].title && <ShieldCheck className="h-7 w-7 text-[#83f0d9]" />}
               {title === t.pillars[2].title && <Network className="h-7 w-7 text-[#83f0d9]" />}
@@ -160,7 +160,7 @@ export default function Home() {
       {/* Quote Section */}
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-6 lg:grid-cols-[1fr_0.92fr]">
         <div className="rounded-lg border border-white/10 bg-white/[0.045] p-7">
-          <Quote className="h-8 w-8 text-[#f2c766]" />
+          <Quote className="h-8 w-8 text-accent-gold" />
           <h2 className={`mt-5 text-3xl font-semibold text-white ${fontClass}`}>{t.quote.title}</h2>
           <p className={`mt-5 text-base leading-8 text-white/68 ${fontClass}`}>{t.quote.text}</p>
         </div>
@@ -177,9 +177,9 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <div className="mt-8 rounded-lg border border-[#f2c766]/25 bg-[#f2c766]/10 p-5">
+          <div className="mt-8 rounded-lg border border-accent-gold/25 bg-accent-gold-bg p-5">
             <div className="flex items-center gap-3">
-              <LibraryBig className="h-5 w-5 text-[#f2c766]" />
+              <LibraryBig className="h-5 w-5 text-accent-gold" />
               <p className={`text-sm font-semibold text-[#f8dc8d] ${fontClass}`}>{t.knowledge.builtLabel}</p>
             </div>
             <p className={`mt-3 text-sm leading-6 text-white/62 ${fontClass}`}>
@@ -228,7 +228,7 @@ export default function Home() {
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {t.gateway.cards.map((item) => (
               <div key={item.title} className="rounded-2xl border border-white/10 bg-white/[0.045] p-6 shadow-[0_0_70px_rgba(109,93,252,0.12)] backdrop-blur">
-                <BadgeCheck className="h-6 w-6 text-[#f2c766]" />
+                <BadgeCheck className="h-6 w-6 text-accent-gold" />
                 <h3 className={`mt-4 text-base font-semibold text-white ${fontClass}`}>{item.title}</h3>
                 <p className={`mt-3 text-sm leading-6 text-white/58 ${fontClass}`}>{item.text}</p>
               </div>
