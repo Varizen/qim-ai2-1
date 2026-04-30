@@ -2,11 +2,40 @@
 
 @layer base {
   :root {
-    --background: #0B0F1A;
-    --foreground: #E5E7EB;
-    --surface: #111827;
+    /* ─── Surface ─── */
+    --background: #07100f;
+    --foreground: #edf7f5;
+    --surface-elevated: #0d1f22;
+    --surface-hover: #111827;
+    --surface-border: rgba(255,255,255,0.10);
+    --surface-border-light: rgba(255,255,255,0.06);
+
+    /* ─── Brand ─── */
     --primary: #6D5DFC;
     --accent: #14B8A6;
+    --accent-gold: #f2c766;
+    --accent-gold-hover: #f7dc96;
+    --accent-gold-bg: rgba(242,199,102,0.10);
+    --accent-gold-border: rgba(242,199,102,0.35);
+
+    /* ─── Semantic ─── */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    /* ─── Text ─── */
+    --text-primary: #edf7f5;
+    --text-secondary: rgba(237,247,245,0.68);
+    --text-muted: rgba(237,247,245,0.45);
+    --text-disabled: rgba(237,247,245,0.25);
+
+    /* ─── Legacy Gradients ─── */
+    --legacy-start: #07100f;
+    --legacy-mid: #0f2023;
+    --legacy-end: #120f1b;
+
+    /* ─── Typography ─── */
     --font-bangla: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
   }
 
@@ -23,11 +52,35 @@
 }
 
 @theme inline {
+  /* Surface */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-surface: var(--surface);
+  --color-surface: var(--surface-elevated);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--surface-border);
+  --color-border-light: var(--surface-border-light);
+
+  /* Brand */
   --color-primary: var(--primary);
   --color-accent: var(--accent);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-gold-hover: var(--accent-gold-hover);
+  --color-accent-gold-bg: var(--accent-gold-bg);
+  --color-accent-gold-border: var(--accent-gold-border);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  /* Text */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+
+  /* Typography */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-bangla: var(--font-bangla);

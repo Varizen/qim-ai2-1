@@ -1,0 +1,37 @@
+# Dependencies
+node_modules
+backend/node_modules
+
+# Next.js build output
+.next
+out
+build
+
+# Large files
+*.zip
+Prompt1.5*.txt
+Prompt1.5*.rtf
+
+# Misc
+.DS_Store
+*.pem
+.env*
+.vercel
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Testing
+coverage
+
+# Python tool (not needed for frontend deploy)
+Searchtool/
+TeachYourAI_2.0/
+
+# Assets not needed for build
+Assets/
+logo/
+Prompts/
